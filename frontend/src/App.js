@@ -11,19 +11,19 @@ function App() {
   }, []);
 
   const fetchTodos = async () => {
-    const res = await axios.get('http://localhost:5000/api/todos');
+    const res = await axios.get('https://to-do-list-app-ofd5.onrender.com/api/todos');
     setTodos(res.data);
   };
 
   const addTodo = async () => {
     if (!task.trim()) return;
-    await axios.post('http://localhost:5000/api/todos', { task });
+    await axios.post('https://to-do-list-app-ofd5.onrender.com/api/todos', { task });
     setTask('');
     fetchTodos();
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`https://to-do-list-app-ofd5.onrender.com/api/todos/${id}`);
     fetchTodos();
   };
 
@@ -51,6 +51,16 @@ function App() {
     </div>
   );
 }
+
+
+
+
+
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL,
+});
+
 
 export default App;
 
